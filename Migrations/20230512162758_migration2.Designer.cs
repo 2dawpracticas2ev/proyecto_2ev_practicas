@@ -11,8 +11,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace proyecto_2ev_practicas.Migrations
 {
     [DbContext(typeof(DataContext))]
-    [Migration("20230512133048_migration1")]
-    partial class migration1
+    [Migration("20230512162758_migration2")]
+    partial class migration2
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -22,6 +22,25 @@ namespace proyecto_2ev_practicas.Migrations
                 .HasAnnotation("Relational:MaxIdentifierLength", 128);
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder, 1L, 1);
+
+            modelBuilder.Entity("proyecto_2ev_practicas.OrderRepositoryModel", b =>
+                {
+                    b.Property<int?>("id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int?>("id"), 1L, 1);
+
+                    b.Property<DateTime>("date")
+                        .HasColumnType("datetime2");
+
+                    b.Property<int?>("product_id")
+                        .HasColumnType("int");
+
+                    b.HasKey("id");
+
+                    b.ToTable("Orders");
+                });
 
             modelBuilder.Entity("proyecto_2ev_practicas.ProductRepositoryModel", b =>
                 {

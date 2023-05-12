@@ -1,6 +1,6 @@
 namespace proyecto_2ev_practicas;
 
-public class HistoryDto
+public class OrderDto
 {
     public int? id {get; set;}
 

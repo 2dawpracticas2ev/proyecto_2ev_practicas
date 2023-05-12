@@ -51,4 +51,36 @@ public class DatabaseService : IDatabaseService
             return "Product Removed";
         }
     }
+
+    public List<OrderRepositoryModel> GetOrdersDB()
+    {
+        return _dataContext.Orders.ToList();
+    }
+
+    public  OrderRepositoryModel GetOrderByProductIdDB(int idDB){
+        var existingProduct = _dataContext.Products.Where(e => e.product_id == idDB).FirstOrDefault();
+        if (existingProduct == null){
+            return new OrderRepositoryModel();
+        }else{
+            var order = _dataContext.Orders.Where(e => e.product_id == idDB).FirstOrDefault();
+            return order;
+        }
+    }
+
+    public string AddOrderDB(OrderRepositoryModel orderDB){
+        if (orderDB == null){
+            return "Error";
+        }else{
+            var existingProductId = _dataContext.Products.Where(e => e.product_id == orderDB.product_id).FirstOrDefault();
+            if  (existingProductId == null){
+                return "Error";
+            } else {
+                _dataContext.Orders.Add(orderDB);
+                _dataContext.SaveChanges(); 
+                return "Order Added";
+            }
+          
+        }
+    }
+
 }

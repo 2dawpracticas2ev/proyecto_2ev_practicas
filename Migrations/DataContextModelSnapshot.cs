@@ -21,6 +21,25 @@ namespace proyecto_2ev_practicas.Migrations
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder, 1L, 1);
 
+            modelBuilder.Entity("proyecto_2ev_practicas.OrderRepositoryModel", b =>
+                {
+                    b.Property<int?>("id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int?>("id"), 1L, 1);
+
+                    b.Property<DateTime>("date")
+                        .HasColumnType("datetime2");
+
+                    b.Property<int?>("product_id")
+                        .HasColumnType("int");
+
+                    b.HasKey("id");
+
+                    b.ToTable("Orders");
+                });
+
             modelBuilder.Entity("proyecto_2ev_practicas.ProductRepositoryModel", b =>
                 {
                     b.Property<int?>("product_id")

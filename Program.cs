@@ -7,6 +7,11 @@ builder.Services.AddScoped<IProductRepository, ProductRepository>();
 builder.Services.AddScoped<IProductsService, ProductService>();
 builder.Services.AddScoped<IDatabaseService, DatabaseService>();
 
+builder.Services.AddScoped<IOrderService, OrderService>();
+builder.Services.AddScoped<IOrderRepository, OrderRepository>();
+
+
+
 builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
@@ -24,6 +29,18 @@ if (app.Environment.IsDevelopment())
     app.UseSwaggerUI();
 }
 
+app.UseCors(options => {
+    options.AllowAnyMethod();
+    options.AllowAnyHeader(); 
+});
+
+// app.UseSwagger();
+// app.UseSwaggerUI((options) => {
+//     options.SwaggerEndpoint("swagger/v1/swagger.json", "v1");
+//     options.RoutePrefix = string.Empty;
+// });
+
+
 app.UseHttpsRedirection();
 
 app.UseAuthorization();
@@ -31,3 +48,4 @@ app.UseAuthorization();
 app.MapControllers();
 
 app.Run();
+
