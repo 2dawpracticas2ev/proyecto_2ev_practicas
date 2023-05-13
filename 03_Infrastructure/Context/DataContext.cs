@@ -6,7 +6,7 @@ public class DataContext : DbContext{
 
     public DbSet<ProductRepositoryModel>? Products {get;set;}
     // public DbSet<UserRepositoryModel>? Users {get;set;}
-    // public DbSet<HistoryRepositoryModel>? History {get;set;}
+    public DbSet<OrderRepositoryModel>? Orders {get;set;}
     // public DbSet<ShopRepositoryModel>? Shops {get;set;}
 
 }
